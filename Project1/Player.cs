@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SharpDX.Direct3D9;
 
 namespace Project1
 {
@@ -20,15 +18,18 @@ namespace Project1
         Vector2 pos;
         Vector2 destination;
         Vector2 direction;
-        float speed = 100.0f;
+        float speed = 125.0f;
         bool moving = false;
 
+        public Rectangle hitbox;
         KeyboardState previousPress;
 
         public Player(Vector2 pos)
         {
             this.pos = pos;
             animator = new Animator(TextureHandler.Pacman, new int[]{15, 15}, pos);
+            hitbox.Width = TextureHandler.Pacman.Width/2;
+            hitbox.Height = TextureHandler.Pacman.Height;
         }
 
         public void ChangeDirection(Vector2 dir)

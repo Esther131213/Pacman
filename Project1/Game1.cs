@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace Project1 // Download editor: dotnet tool install --global dotnet-mgcb-editor
 {
@@ -13,8 +15,7 @@ namespace Project1 // Download editor: dotnet tool install --global dotnet-mgcb-
 
         TileManager tileManager;
 
-        Player player;
-
+        public Player player;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -39,6 +40,8 @@ namespace Project1 // Download editor: dotnet tool install --global dotnet-mgcb-
             player = new Player(new Vector2 (32, 32));
             tileManager = new TileManager();
             tileManager.LoadTileMap("tilemap.txt", TextureHandler.TileMap);
+
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -52,9 +55,13 @@ namespace Project1 // Download editor: dotnet tool install --global dotnet-mgcb-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.Update(gameTime);
+            foreach (Berry b in tileManager.berryList)
+            {
+                
+            }
 
-            // TODO: Add your update logic here
+
+            player.Update(gameTime);
 
             base.Update(gameTime);
         }

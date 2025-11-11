@@ -17,6 +17,7 @@ namespace Project1
 {
     public class TileManager
     {
+        public List<Berry> berryList;
         public static Tile[,] tiles;
         Texture2D tileset;
         public readonly int tileSize = 32;
@@ -24,6 +25,11 @@ namespace Project1
         List<string> Map = new List<string>();
         int tileId;
         Rectangle sourceRectangle;
+
+        public TileManager()
+        {
+            berryList = new List<Berry>();
+        }
 
         public static List<string> GetMapInfo(string filePath)
         {
@@ -58,6 +64,8 @@ namespace Project1
                     if (tileId == 0)
                     {
                         tiles[x, y] = new Tile(true, true, sourceRectangle, tileset, tilePos);
+
+                        berryList.Add(new Berry(TextureHandler.Berry, tilePos));
                     }
                     else if (tileId == 1)
                     {
@@ -70,6 +78,7 @@ namespace Project1
                 }
             }
         }
+
 
         public Vector2 GetTilePosition(int x, int y)
         {
@@ -84,6 +93,10 @@ namespace Project1
                 {
                     tiles[x, y].Draw(spriteBatch);
                 }
+            }
+            foreach (Berry b in berryList) 
+            { 
+                b.Draw(spriteBatch);
             }
         }
     }

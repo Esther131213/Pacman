@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.MediaFoundation;
 
 namespace Project1
 {
@@ -14,11 +15,14 @@ namespace Project1
     {
         public static Texture2D TileMap;
         public static Texture2D Pacman;
+        public static Texture2D Berry;
+
 
         public static void LoadTextures(ContentManager content)
         {
             TileMap = content.Load<Texture2D>("PacmanPath");
             Pacman = content.Load<Texture2D>("PacmanSpriteSheet");
+            Berry = content.Load<Texture2D>("PacmanForNow");
         }
     }
 }
