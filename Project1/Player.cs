@@ -20,16 +20,19 @@ namespace Project1
         Vector2 direction;
         float speed = 125.0f;
         bool moving = false;
+        int hitBoxOffset = 10;
+        public int playerScore = -15;
+        public int PlayerHealth = 3;
 
         public Rectangle hitbox;
-        KeyboardState previousPress;
+        int hitBoxSize = 3;
 
         public Player(Vector2 pos)
         {
             this.pos = pos;
             animator = new Animator(TextureHandler.Pacman, new int[]{15, 15}, pos);
-            hitbox.Width = TextureHandler.Pacman.Width/2;
-            hitbox.Height = TextureHandler.Pacman.Height;
+            hitbox.Width = TextureHandler.Pacman.Width / (hitBoxSize * 2);
+            hitbox.Height = TextureHandler.Pacman.Height / hitBoxSize;
         }
 
         public void ChangeDirection(Vector2 dir)
@@ -51,13 +54,13 @@ namespace Project1
             Right,
             Up,
             Down
-
         }
         WalkState walkstate = WalkState.notWalking;
 
         public void Update(GameTime gameTime)
         {
-            animator.Update(pos + new Vector2 (TextureHandler.Pacman.Width/4, TextureHandler.Pacman.Height/2));
+            hitbox.X = (int)pos.X + hitBoxOffset;
+            hitbox.Y = (int)pos.Y + hitBoxOffset;
 
             if (!moving)
             {
@@ -93,6 +96,8 @@ namespace Project1
                     moving = false;
                 }
             }
+
+            animator.Update(pos + new Vector2(TextureHandler.Pacman.Width / 4, TextureHandler.Pacman.Height / 2));
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -112,6 +117,7 @@ namespace Project1
             }
 
             animator.Draw(spriteBatch, rotation);
+            //spriteBatch.Draw(TextureHandler.hitBox, new Vector2(hitbox.X, hitbox.Y), hitbox, Color.Green);
         }
     }
 }

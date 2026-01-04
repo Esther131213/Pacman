@@ -79,7 +79,6 @@ namespace Project1
             }
         }
 
-
         public Vector2 GetTilePosition(int x, int y)
         {
             return new Vector2(x * tileSize, y * tileSize);

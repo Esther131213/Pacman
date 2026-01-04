@@ -10,16 +10,15 @@ namespace Project1
     {
         Texture2D tex;
         public Vector2 pos;
-        public int pointAmount = 10;
+        public int pointAmount = 15;
         public Rectangle hitbox;
 
         public Berry(Texture2D tex, Vector2 pos)
         {
             this.tex = tex;
             this.pos = pos;
-            hitbox = new Rectangle();
-            hitbox.X = (int)pos.X+1/4;
-            hitbox.Y = (int)pos.Y+1/4;
+            hitbox.X = (int)pos.X+8;
+            hitbox.Y = (int)pos.Y+8;
             hitbox.Width = tex.Width/2;
             hitbox.Height = tex.Height/2;
         }
@@ -27,7 +26,7 @@ namespace Project1
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(tex,pos,Color.White);
-            spriteBatch.Draw(tex, new Vector2(hitbox.X, hitbox.Y), hitbox, Color.White);
+            //spriteBatch.Draw(TextureHandler.hitBox, new Vector2(hitbox.X, hitbox.Y), hitbox, Color.Blue);
         }
     }
 }
